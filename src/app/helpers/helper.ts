@@ -10,6 +10,7 @@ export class Helper {
     constructor(
         private _location: Location
     ) {}
+
     public notificationToast(message: string, title: string, type = 'success'): void {
         toastr.options = {
           'closeButton': true,

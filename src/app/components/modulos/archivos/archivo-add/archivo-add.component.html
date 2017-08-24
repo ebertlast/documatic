@@ -23,9 +23,9 @@
             </div>
             <div class="ibox-content">
                 <form method="post" onsubmit="" class="form-horizontal">
-                    
+
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Proceso</label>
+                        <label class="col-sm-2 control-label">Gesti&oacute;n</label>
                         <div class="col-sm-10">
                             <select class="form-control m-b" name="gestionid" [(ngModel)]="model.gestionid" (change)="archivoid()" >
                                 <option *ngFor="let gestion of gestiones" value="{{gestion.gestionid}}" > {{gestion.denominacion}} </option>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    
+
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Identificador</label>
 

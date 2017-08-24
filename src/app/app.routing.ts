@@ -30,7 +30,7 @@ const appRoutes: Routes = [
     { path: 'enconstruccion', component: EnConstruccionComponent },
     { path: 'perfiles', component: PerfilesComponent, canActivate: [AuthGuard] },
     { path: 'perfiledit/:perfilid', component: PerfilEditComponent, canActivate: [AuthGuard] },
-    { path: 'perfiladd', component: EnConstruccionComponent, canActivate: [AuthGuard] },
+    { path: 'perfiladd', component: PerfilAddComponent, canActivate: [AuthGuard] },
     { path: 'perfil/:perfilid', component: PerfilViewComponent, canActivate: [AuthGuard] },
     { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard] },
     { path: 'usuarioedit/:usuario', component: UsuarioEditComponent, canActivate: [AuthGuard] },

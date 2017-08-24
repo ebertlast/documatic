@@ -6,9 +6,9 @@
           <h5>Resumen</h5>
           <ul class="folder-list m-b-md" style="padding: 0">
               <li><a (click)="filtrar('pendientes')"> <i class="fa fa-inbox "></i> Pendientes por Aprobar <span class="label label-warning pull-right">{{pendientes.length}}</span> </a></li>
+              <li><a (click)="filtrar('revisar')"> <i class="fa fa-file-text-o"></i> Pendientes por Revisar <span class="label label-danger pull-right"> {{revisionesPendientes.length}} </span></a></li>
               <!--<li class="oculto"><a href="mailbox.html"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
               <li class="oculto"><a href="mailbox.html"> <i class="fa fa-certificate"></i> Important</a></li>
-              <li class="oculto"><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Desaprobados <span class="label label-danger pull-right">2</span></a></li>
               <li class="oculto"><a href="mailbox.html"> <i class="fa fa-trash-o"></i> Trash</a></li>-->
           </ul>
           <h5 class="oculto">Categories</h5>

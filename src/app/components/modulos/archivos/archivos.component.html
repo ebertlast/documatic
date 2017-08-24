@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-3">
-        <app-docbox-content [pendientes]="aprobaciones" (emit)="setFiltro($event)"></app-docbox-content>
+        <app-docbox-content [pendientes]="aprobaciones" [revisionesPendientes]="revisiones" (emit)="setFiltro($event)"></app-docbox-content>
     </div>
     <div class="col-lg-9 animated fadeInRight">
     <div class="mail-box-header">
