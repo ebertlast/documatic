@@ -33,8 +33,8 @@ export class ArchivoViewComponent implements OnInit {
   public fhasta = '';
   public me: string;
 
-  public botonesAprobacion = true;
-  public botonesRevision = true;
+  public botonesAprobacion = false;
+  public botonesRevision = false;
   public aprobado = false;
   public revisado = false;
 
@@ -98,6 +98,7 @@ export class ArchivoViewComponent implements OnInit {
           if (actualizado) {
             // this.archivo.fechaexp = $('#fechaexp').val();
           }
+          this.getArchivo();
         }
         );
     });
@@ -192,7 +193,7 @@ export class ArchivoViewComponent implements OnInit {
     //  this.cargarUsuariosFiltrados();
   }
   getAprobaciones() {
-    this.botonesAprobacion = true;
+    this.botonesAprobacion = false;
     this.aprobaciones = [];
     this._aprobacionService.get(this.archivo.archivoid)
       .subscribe(
@@ -208,10 +209,18 @@ export class ArchivoViewComponent implements OnInit {
                 this.botonesAprobacion = false;
                 this.aprobado = aprobacion.aprobado;
                 console.log('Aprobado:' + this.aprobado);
+                if (this.aprobado.toString() === '1') {
+                  this.botonesAprobacion = false;
+                } else {
+                  this.botonesAprobacion = true;
+                }
+                console.log(this.botonesAprobacion);
               }
             }
-
           });
+          // if (aprobacion.archivoid === this.archivo.archivoid && !aprobacion.aprobado) {
+          //   this.botonesAprobacion = false;
+          // }
         });
       }
       );
@@ -270,7 +279,8 @@ export class ArchivoViewComponent implements OnInit {
       success => {
         // console.log(success);
         // if (success === true) {
-        this.getAprobaciones();
+        this.getArchivo();
+        // this.getAprobaciones();
         // _this.refreshUsuarios();
         // }
       }
@@ -334,7 +344,7 @@ export class ArchivoViewComponent implements OnInit {
       }, _this);
   }
   getRevisiones() {
-    this.botonesRevision = true;
+    this.botonesRevision = false;
     this.revisiones = [];
     this._revisionService.get(this.archivo.archivoid)
       .subscribe(
@@ -352,9 +362,10 @@ export class ArchivoViewComponent implements OnInit {
 
               if (this._autenticacionService.usuario.usuario === usuario.usuario) {
                 // console.log(this.usuarios);
-                this.botonesRevision = false;
+                // this.botonesRevision = false;
                 this.revisado = revision.revisado;
                 console.log('Revisado:' + this.revisado);
+                this.botonesRevision = (this.revisado.toString() !== '1');
 
               }
             }
@@ -416,7 +427,8 @@ export class ArchivoViewComponent implements OnInit {
     this._revisionService.revisar(archivoid, true)
       .subscribe(
       success => {
-        this.getRevisiones();
+        this.getArchivo();
+        // this.getRevisiones();
       }
       );
   }
