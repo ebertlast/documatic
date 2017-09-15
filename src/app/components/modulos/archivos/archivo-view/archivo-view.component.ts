@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Navlink as Link } from 'app/models/navlink';
-import { Archivo, Usuario, Aprobacion } from 'app/models/index';
-import { Revision } from 'app/models/revision';
-import { AppComponent } from 'app/app.component';
-import { Helper } from 'app/helpers/helper';
+import { Navlink as Link } from '../../../../../app/models/navlink';
+import { Archivo, Usuario, Aprobacion } from '../../../../../app/models/index';
+import { Revision } from '../../../../../app/models/revision';
+import { AppComponent } from '../../../../../app/app.component';
+import { Helper } from '../../../../../app/helpers/helper';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ArchivoService } from 'app/services/modulos/archivos/archivo.service';
-import { AprobacionService } from 'app/services/modulos/archivos/aprobacion.service';
-import { AutenticacionService } from 'app/services/seguridad/autenticacion.service';
-import { UsuariosService } from 'app/services/seguridad/usuarios.service';
-import { RevisionService } from 'app/services/modulos/archivos/revision.service';
+import { ArchivoService } from '../../../../../app/services/modulos/archivos/archivo.service';
+import { AprobacionService } from '../../../../../app/services/modulos/archivos/aprobacion.service';
+import { AutenticacionService } from '../../../../../app/services/seguridad/autenticacion.service';
+import { UsuariosService } from '../../../../../app/services/seguridad/usuarios.service';
+import { RevisionService } from '../../../../../app/services/modulos/archivos/revision.service';
 import { app } from '../../../../../environments/environment';
+import { RutasService } from '../../../../services/seguridad/rutas.service';
+import { Ruta } from '../../../../models/';
 import * as moment from 'moment';
 // import { FechacortaPipe } from '../../../../pipes/fechacorta.pipe';
 // import moment = require("moment");
@@ -42,6 +44,8 @@ export class ArchivoViewComponent implements OnInit {
   public archivoFuente = false;
 
   public enableDelete = false;
+  public disableArchivoFuente = true;
+  public disableAprobaciones = true;
   public uploading = false;
   public cantidadArchivos = 1;
   constructor(
@@ -53,6 +57,7 @@ export class ArchivoViewComponent implements OnInit {
     private _aprobacionService: AprobacionService,
     private _revisionService: RevisionService,
     private _autenticacionService: AutenticacionService,
+    private _rutasService: RutasService
     // private _router:Router
     // private _fechaCortaPipe: FechacortaPipe
   ) {
@@ -107,6 +112,17 @@ export class ArchivoViewComponent implements OnInit {
     //     console.log($('#fdesde').val());
     // });
     this.getArchivos();
+    this.disableArchivoFuente=true;
+    this._rutasService.rutasEnPerfil(this._autenticacionService.usuario.perfilid).subscribe(permisos => {
+      permisos.forEach(permiso => {
+        if(permiso.rutaid==='archivofuente'){
+          this.disableArchivoFuente=false;
+        }
+        if(permiso.rutaid==='aprobaciones'){
+          this.disableAprobaciones=false;
+        }
+      });
+    });
   }
   getArchivos() {
     this.archivos = [];
@@ -149,7 +165,7 @@ export class ArchivoViewComponent implements OnInit {
           const fechaexp = new Date(this.archivo.fechaexp);
           $('#fechaexp').val(fechaexp.getDate() + '/' + fechaexp.getMonth() + '/' + fechaexp.getFullYear());
           if (this.archivo.nombre.indexOf('.pdf') < 0) {
-            this.archivoFuente = true;
+            // this.archivoFuente = true;
             this.archivoFuente = false;
           }
           if (this.archivo.usuario === this.me) {

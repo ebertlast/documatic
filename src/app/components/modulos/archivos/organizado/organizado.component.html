@@ -36,10 +36,6 @@
                             <div id="{{gestion.gestionid}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                 <div class="panel-body">
                                     <!-- --------------------------------------- -->
-
-
-
-
                                     <ul class="nav nav-tabs">
                                         <li class="active">
                                             <a data-toggle="tab" href="#tab-{{i}}1" aria-expanded="true">
@@ -194,7 +190,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let a of archivos | applyFilter:'gestionid':gestion.gestionid | applyFilter: 'convencionid':'C'; let ai = index">
+                                                    <tr *ngFor="let a of archivos | applyFilter:'gestionid':gestion.gestionid | applyFilter: 'convencionid':'E'; let ai = index">
                                                         <td>
                                                             {{a.fecha|fechacorta}}
                                                         </td>

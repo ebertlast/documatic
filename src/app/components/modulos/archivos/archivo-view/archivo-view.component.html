@@ -86,7 +86,7 @@
               </div>
 
             </div>
-            <div class="file-box" [ngClass]="{'oculto' : archivo.usuario !== me}">
+            <div class="file-box" [ngClass]="{'oculto' : disableArchivoFuente}">
               <div class="file">
                 <a href="{{app.apiurl}}uploads/{{archivo.nombre}}" [ngClass]="{'oculto':!archivoFuente}">
                     <span class="corner"></span>
@@ -160,7 +160,7 @@
             <div class="clearfix"></div>
           </div>
         </div>
-        <div class="mail-body tooltip-demo" [ngClass]="{'oculto' : me !== archivo.usuario}">
+        <div class="mail-body tooltip-demo" [ngClass]="{'oculto' : disableAprobaciones}">
           <div class="ibox float-e-margins">
             <div class="ibox-content mailbox-content">
               <div class="file-manager">
