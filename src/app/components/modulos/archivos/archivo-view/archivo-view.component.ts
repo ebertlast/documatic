@@ -112,14 +112,14 @@ export class ArchivoViewComponent implements OnInit {
     //     console.log($('#fdesde').val());
     // });
     this.getArchivos();
-    this.disableArchivoFuente=true;
+    this.disableArchivoFuente = true;
     this._rutasService.rutasEnPerfil(this._autenticacionService.usuario.perfilid).subscribe(permisos => {
       permisos.forEach(permiso => {
-        if(permiso.rutaid==='archivofuente'){
-          this.disableArchivoFuente=false;
+        if (permiso.rutaid === 'archivofuente') {
+          this.disableArchivoFuente = false;
         }
-        if(permiso.rutaid==='aprobaciones'){
-          this.disableAprobaciones=false;
+        if (permiso.rutaid === 'aprobaciones') {
+          this.disableAprobaciones = false;
         }
       });
     });
