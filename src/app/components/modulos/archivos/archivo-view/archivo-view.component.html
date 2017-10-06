@@ -69,7 +69,8 @@
                     <small>Agregado: {{archivo.fecha|fechacorta}}</small>
 
                     <br>
-                    <div [ngClass]="{'oculto':archivo.usuario !== me}">
+                    <!-- <div [ngClass]="{'oculto':archivo.usuario !== me}"> -->
+                    <div [ngClass]="{'oculto':usuarioActual.perfilid !== usuarioArchivo.perfilid}">
 
                       <label for="file-upload2" class="custom-file-upload" *ngIf="!uploading">
                             <i class="fa fa-cloud-upload" ></i> Actualizar Versi&oacute;n

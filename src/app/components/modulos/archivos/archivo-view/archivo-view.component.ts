@@ -48,6 +48,11 @@ export class ArchivoViewComponent implements OnInit {
   public disableAprobaciones = true;
   public uploading = false;
   public cantidadArchivos = 1;
+
+
+  public usuarioArchivo: Usuario = new Usuario();
+  public usuarioActual: Usuario = new Usuario();
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _appComponent: AppComponent,
@@ -61,12 +66,13 @@ export class ArchivoViewComponent implements OnInit {
     // private _router:Router
     // private _fechaCortaPipe: FechacortaPipe
   ) {
-    this.me = this._autenticacionService.usuario.usuario;
+    this.usuarioActual = this._autenticacionService.usuario;
+    this.me = this.usuarioActual.usuario;
   }
 
   ngOnInit() {
-    this.getArchivo();
     this.refreshUsuarios();
+    this.getArchivo();
 
     //  $('input[name="daterange"]').daterangepicker();
     $('#fechaexp').datepicker({
@@ -168,9 +174,21 @@ export class ArchivoViewComponent implements OnInit {
             // this.archivoFuente = true;
             this.archivoFuente = false;
           }
-          if (this.archivo.usuario === this.me) {
+
+
+          this.usuarios.forEach(usuario => {
+            if (usuario.usuario === this.archivo.usuario) { this.usuarioArchivo = usuario; }
+          });
+          console.log('Usuario Archivo: ', this.usuarioArchivo);
+
+
+          // if (this.archivo.usuario === this.me) {
+          if (this.usuarioActual.perfilid === this.usuarioArchivo.perfilid) {
             this.enableDelete = true;
           }
+
+
+
           this.setLinks();
           this.getAprobaciones();
           this._archivoService.get('AF__' + this.archivo.archivoid)
