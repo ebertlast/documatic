@@ -99,7 +99,7 @@ export class AutenticacionService {
         const data = this.extractData(response, false);
         if (data.success) { return true; }
         let message = 'No posee los privilegios necesarios para acceder al recurso solicitado.';
-        message += 'Contacto con nosotros para mayor información.';
+        message += ' Contacte con nosotros para mayor información.';
         this._helper.notificationToast(message, 'Acceso denegado', 'info');
         return false;
       }).catch(err => this.handleError(err));
