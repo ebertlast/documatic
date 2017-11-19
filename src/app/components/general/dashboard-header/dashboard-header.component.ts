@@ -6,24 +6,24 @@ import { Navlink } from 'app/models/navLink';
   templateUrl: './dashboard-header.component.html',
   styleUrls: ['./dashboard-header.component.css']
 })
-export class DashboardHeaderComponent implements OnInit, OnChanges  {
+export class DashboardHeaderComponent implements OnInit, OnChanges {
   @Input()
-  public navLinks:Navlink[]=[];
-  public title:string="";
+  public navLinks: Navlink[] = [];
+  public title: string = "";
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngOnChanges(changes:SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
     this.construirNavegacion(this.navLinks);
   }
-  
-  public construirNavegacion(links:Navlink[]){
-    this.navLinks=[{url:"",title:"Inicio",active:false}];
-    if(links!==null)
+
+  public construirNavegacion(links: Navlink[]) {
+    this.navLinks = [{ url: "", title: "Inicio", active: false }];
+    if (links !== null)
       links.forEach(element => {
-        if(element.title!="")
+        if (element.title != "")
           this.navLinks.push(element);
       });
   }

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Helper } from 'app/helpers/helper';
+import { Helper } from '../../../helpers/helper';
 import { AutenticacionService } from '../../seguridad/autenticacion.service';
 import { app } from '../../../../environments/environment';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import { Archivo as Model } from 'app/models/archivo';
-
+import { Archivo as Model } from '../../../models/archivo';
+// import { Observable } from 'rxjs';
+// import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 @Injectable()
 export class ArchivoService {
   URL = app.apiurl + '/archivos.php/archivo';

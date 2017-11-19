@@ -13,9 +13,9 @@ declare var jQuery: any;
 })
 export class NavbarDefaultComponent implements OnInit, OnChanges {
   @Input()
-  usuario:Usuario=new Usuario();
-  app=app;
-  public menues:Menu[]=[];
+  usuario: Usuario = new Usuario();
+  app = app;
+  public menues: Menu[] = [];
   /*************************************/
   public _seguridad = false;
   public _usuarios = false;
@@ -27,11 +27,11 @@ export class NavbarDefaultComponent implements OnInit, OnChanges {
   /*************************************/
 
   constructor(
-    private _helper:Helper
-    ,private _menuesService:MenuesService
-    ,public _router:Router
+    private _helper: Helper
+    , private _menuesService: MenuesService
+    , public _router: Router
   ) {
-   }
+  }
   ngOnChanges(changes: SimpleChanges) {
     // console.log("Cambios:");
     // console.log(changes);
@@ -44,56 +44,56 @@ export class NavbarDefaultComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  public recargarMenues(usuario:Usuario):void{
-    if(usuario===null || usuario.usuario===""){
+  public recargarMenues(usuario: Usuario): void {
+    if (usuario === null || usuario.usuario === "") {
       return;
     }
 
-    this._seguridad=false;
-    this._usuarios=false;
-    this._perfiles=false;
-    this._menues=false;
+    this._seguridad = false;
+    this._usuarios = false;
+    this._perfiles = false;
+    this._menues = false;
 
 
-    this._gestiondocumental=false;
-    this._archivos=false;
-    this._gestion=false;
+    this._gestiondocumental = false;
+    this._archivos = false;
+    this._gestion = false;
 
-    this.menues=[];
+    this.menues = [];
     this._menuesService.getMenues(this.usuario.usuario)
-          .subscribe(
-            menues => {
-              this.menues=menues;
-              this.menues.forEach(menu=>{
-                switch (menu.menuid) {
-                  case "seguridad":
-                    this._seguridad=true;
-                    break;
-                  case "usuarios":
-                    this._usuarios=true;
-                    break;
-                  case "perfiles":
-                    this._perfiles=true;
-                  case "menues":
-                    this._menues=true;
-                    break;
-                  case "archivos":
-                    this._gestiondocumental=true;
-                    this._archivos=true;
-                    break;
-                  case "gestion":
-                    this._gestiondocumental=true;
-                    this._gestion=true;
-                    break;
-                  default:
-                    break;
-                }
-              });
+      .subscribe(
+      menues => {
+        this.menues = menues;
+        this.menues.forEach(menu => {
+          switch (menu.menuid) {
+            case "seguridad":
+              this._seguridad = true;
+              break;
+            case "usuarios":
+              this._usuarios = true;
+              break;
+            case "perfiles":
+              this._perfiles = true;
+            case "menues":
+              this._menues = true;
+              break;
+            case "archivos":
+              this._gestiondocumental = true;
+              this._archivos = true;
+              break;
+            case "gestion":
+              this._gestiondocumental = true;
+              this._gestion = true;
+              break;
+            default:
+              break;
+          }
+        });
 
-              // console.log(this.menues);
-              // console.log("Seguridad: "+this._seguridad);
-            }
-          );
+        // console.log(this.menues);
+        // console.log("Seguridad: "+this._seguridad);
+      }
+      );
   }
 
 

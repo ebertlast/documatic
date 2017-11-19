@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import { Helper } from 'app/helpers/helper';
+import { Helper } from '../../helpers/helper';
 import { Router } from '@angular/router';
 import { app, environment } from '../../../environments/environment';
-import { Usuario } from 'app/models/usuario';
+import { Usuario } from '../../models/usuario';
+// import { Observable } from 'rxjs';
+// import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 @Injectable()
 export class AutenticacionService {
   public token: string;

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import { Perfil } from 'app/models/perfil';
+import { Perfil } from '../../models/perfil';
 import { AutenticacionService } from './autenticacion.service';
 import { environment, app } from '../../../environments/environment';
-import { Helper } from 'app/helpers/helper';
+import { Helper } from '../../helpers/helper';
+// import { Observable } from 'rxjs';
+// import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 @Injectable()
 export class PerfilesService {
 

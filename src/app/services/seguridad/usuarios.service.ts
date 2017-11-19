@@ -1,11 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
-import { Usuario } from 'app/models/usuario';
-import { Helper } from 'app/helpers/helper';
+import { Usuario } from '../../models/usuario';
+import { Helper } from '../../helpers/helper';
 import { AutenticacionService } from './autenticacion.service';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { app, environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+// import { Observable } from 'rxjs';
+// import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Injectable()
 export class UsuariosService {
