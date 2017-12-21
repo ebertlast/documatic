@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ApplyFilterPipe } from './pipes/apply-filter.pipe';
@@ -103,7 +104,7 @@ import { HistoricoComponent } from './components/modulos/archivos/historico/hist
     HttpModule,
     routing
   ],
-  providers: [
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
     Helper, AutenticacionService, UsuariosService, AuthGuard, MenuesService, AppComponent,
     NavbarDefaultComponent, PerfilesService, RutasService, PagerService, GestionService,
     ConvencionService, ArchivoService, AprobacionService, VigenciaService, RevisionService

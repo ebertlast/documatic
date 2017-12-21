@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Navlink } from 'app/models/navlink';
-import { Usuario } from 'app/models/usuario';
-import { Perfil } from 'app/models/perfil';
-import { AppComponent } from 'app/app.component';
-import { PerfilesService } from 'app/services/seguridad/perfiles.service';
-import { UsuariosService } from 'app/services/seguridad/usuarios.service';
-import { Helper } from 'app/helpers/helper';
+import { Navlink } from '../../../../models/navlink';
+import { Usuario } from '../../../../models/usuario';
+import { Perfil } from '../../../../models/perfil';
+import { AppComponent } from '../../../../app.component';
+import { PerfilesService } from '../../../../services/seguridad/perfiles.service';
+import { UsuariosService } from '../../../../services/seguridad/usuarios.service';
+import { Helper } from '../../../../helpers/helper';
 import { Router } from '@angular/router';
 declare var $: any;
 @Component({
