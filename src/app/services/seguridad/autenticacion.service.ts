@@ -8,6 +8,7 @@ import { Usuario } from '../../models/usuario';
 // import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { MSJBIENVENIDA } from './mock.msjsbienvenida';
 @Injectable()
 export class AutenticacionService {
   public token: string;
@@ -136,5 +137,16 @@ export class AutenticacionService {
     this.token = null;
     localStorage.removeItem(app.currentuser);
     // console.log(localStorage.getItem(app.currentuser));
+  }
+
+  public MsjBienvenida(): string {
+    const MSJID = Math.floor(Math.random() * 41) + 1;
+    let _msj = '';
+    MSJBIENVENIDA.forEach(msj => {
+      if (MSJID === msj.msjid) {
+        _msj = msj.msj;
+      }
+    });
+    return _msj;
   }
 }

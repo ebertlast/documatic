@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Archivo } from 'app/models/archivo';
-import { Gestion } from 'app/models/gestion';
-import { Convencion } from 'app/models/convencion';
-import { ArchivoService } from 'app/services/modulos/archivos/archivo.service';
-import { GestionService } from 'app/services/modulos/archivos/gestion.service';
-import { ConvencionService} from 'app/services/modulos/archivos/convencion.service';
 import { app } from '../../../../../environments/environment';
-
+import { AutenticacionService } from '../../../../services/seguridad/autenticacion.service';
+import { ConvencionService } from '../../../../services/modulos/archivos/convencion.service';
+import { ArchivoService } from '../../../../services/modulos/archivos/archivo.service';
+import { GestionService } from '../../../../services/modulos/archivos/gestion.service';
+import { Archivo, Gestion, Convencion } from '../../../../models/index';
+import { Helper } from '../../../../helpers/helper';
 declare var $: any;
+
 @Component({
   selector: 'app-organizado',
   templateUrl: './organizado.component.html',
@@ -17,17 +17,20 @@ export class OrganizadoComponent implements OnInit {
   private archivos: Archivo[] = [];
   public gestiones: Gestion[] = [];
   private convenciones: Convencion[] = [];
-  private obsoletos: boolean = false;
+  private obsoletos = false;
+  msjBienvenida = '';
   constructor(
-    private _archivoService: ArchivoService, 
+    private _archivoService: ArchivoService,
     private _gestionService: GestionService,
-    private _convencionService: ConvencionService
-    ) { }
+    private _convencionService: ConvencionService,
+    private _autenticacionService: AutenticacionService,
+    private _helper: Helper
+  ) { }
   public cargarArchivos() {
     this.archivos = [];
-    if(!this.obsoletos){
+    if (!this.obsoletos) {
       this._archivoService.get()
-      .subscribe(
+        .subscribe(
         list => {
           this.archivos = list;
           // this.allItems = this.archivos;
@@ -35,23 +38,23 @@ export class OrganizadoComponent implements OnInit {
           // this.consultarArchivos();
 
           // this.archivos.forEach(function(archivo){
-            //   if(archivo.gestionid==='GF' && archivo.convencionid==='F') {          
-              //     // console.log(archivo.archivoid);
-              //   }
-              // });
-            }
-            )
-      ;
-    }else{
+          //   if(archivo.gestionid==='GF' && archivo.convencionid==='F') {
+          //     // console.log(archivo.archivoid);
+          //   }
+          // });
+        }
+        )
+        ;
+    } else {
       this._archivoService.getObsoletos()
-      .subscribe(list => {
-        this.archivos = list;
-      });
+        .subscribe(list => {
+          this.archivos = list;
+        });
     }
   }
   public cargarGestiones() {
     this._gestionService.gestiones()
-    .subscribe(
+      .subscribe(
       gestiones => {
         this.gestiones = gestiones;
         // console.log("Gestiones: ");
@@ -59,11 +62,11 @@ export class OrganizadoComponent implements OnInit {
       }
       );
   }
-  public cargarConvenciones(){
+  public cargarConvenciones() {
     this._convencionService.get()
-    .subscribe(
+      .subscribe(
       list => {
-        this.convenciones=list;
+        this.convenciones = list;
         // console.log("Convenciones: ");
         // console.log(this.convenciones);
       }
@@ -77,14 +80,15 @@ export class OrganizadoComponent implements OnInit {
     // Add slimscroll to element
     $('.scroll_content').slimscroll({
       height: '200px'
-    })
+    });
 
-
+    this.msjBienvenida = this._autenticacionService.MsjBienvenida();
+    this._helper.notificationToast(this.msjBienvenida, 'Bienvenido de Nuevo');
   }
 
   public download(archivoid: string) {
     this._archivoService.download(archivoid)
-    .subscribe(
+      .subscribe(
       data => {
         // console.log(data);
         window.open(app.apiurl + data.filename);
@@ -97,7 +101,7 @@ export class OrganizadoComponent implements OnInit {
 
   public maestro() {
     this._archivoService.listadoMaestro()
-    .subscribe(
+      .subscribe(
       data => {
         // console.log(data);
         window.open(app.apiurl + data.filename);

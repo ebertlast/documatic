@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AutenticacionService } from 'app/services/seguridad/autenticacion.service';
-import { Usuario } from 'app/models/usuario';
+import { AutenticacionService } from '../../../services/seguridad/autenticacion.service';
+import { Usuario } from '../../../models/usuario';
 import { Router } from '@angular/router';
-import { Helper } from 'app/helpers/helper';
+import { Helper } from '../../../helpers/helper';
 import { app } from '../../../../environments/environment';
-import { AppComponent } from 'app/app.component';
+import { AppComponent } from '../../../app.component';
 
 declare var $: any;
 declare var Lada: any;
@@ -16,8 +16,10 @@ declare var Lada: any;
 })
 export class IngresarComponent implements OnInit {
   public model: Usuario = new Usuario();
+  public app = app;
   title = 'Bienvenido a ' + app.name;
   loading = false;
+  msjBienvenida = '';
   constructor(
     private _autenticacionService: AutenticacionService,
     private _router: Router, private _helper: Helper,
@@ -28,19 +30,20 @@ export class IngresarComponent implements OnInit {
   ngOnInit() {
     this._autenticacionService.logout();
     this._appComponent.setUsuario(new Usuario());
+    this.msjBienvenida = this._autenticacionService.MsjBienvenida();
   }
 
   public onSubmit() {
     this.loading = true;
     this._autenticacionService.login(this.model.usuario, this.model.clave)
-        .subscribe(result => {
-            if (result === true) {
-                this._router.navigate(['/']);
-                this._appComponent.setUsuario(this._autenticacionService.usuario);
-            } else {
-                this._helper.animateDiv('formLogin', 'shake');
-            }
-        });
+      .subscribe(result => {
+        if (result === true) {
+          this._router.navigate(['/']);
+          this._appComponent.setUsuario(this._autenticacionService.usuario);
+        } else {
+          this._helper.animateDiv('formLogin', 'shake');
+        }
+      });
     this.loading = false;
     return false;
   }

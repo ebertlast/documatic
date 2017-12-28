@@ -11,13 +11,20 @@ export class Helper {
         private _location: Location
     ) {}
 
-    public notificationToast(message: string, title: string, type = 'success'): void {
+    /**
+     * Despliega un mensaje de notificación al usuario (http://codeseven.github.io/toastr/demo.html)
+     * @param message Cuerpo de la notificación
+     * @param title Encabezado de la notificación
+     * @param type Color de la notificación (success: verde, error: rojo, warning: amarillo, info: azul), valor por omisión (success: verde)
+     * @param position Posición del despliegue del mensaje (toast-top-right, toast-bottom-right, toast-bottom-left, toast-top-left, toast-top-full-width, toast-bottom-full-width, toast-top-center, toast-bottom-center), valor por omisión (toast-top-right)
+     */
+    public notificationToast(message: string, title: string, type = 'success', position = 'toast-top-right'): void {
         toastr.options = {
           'closeButton': true,
           'debug': false,
           'progressBar': true,
           'preventDuplicates': true,
-          'positionClass': 'toast-top-right',
+          'positionClass': position,
           'onclick': null,
           'showDuration': '400',
           'hideDuration': '1000',
@@ -27,7 +34,7 @@ export class Helper {
           'hideEasing': 'linear',
           'showMethod': 'fadeIn',
           'hideMethod': 'fadeOut'
-        }
+        };
         switch (type) {
           case 'success':
             toastr.success(message, title);

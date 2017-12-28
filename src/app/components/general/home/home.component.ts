@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
   pager: any = {};
   pagedItems: Archivo[] = [];
   public convenciones: Convencion[] = [];
-  public convencion: string = '';
-  public textoConvencion: string = 'documentos';
+  public convencion = '';
+  public textoConvencion = 'documentos';
 
   constructor(
     private _appComponent: AppComponent
