@@ -82,8 +82,8 @@ export class OrganizadoComponent implements OnInit {
       height: '200px'
     });
 
-    this.msjBienvenida = this._autenticacionService.MsjBienvenida();
-    this._helper.notificationToast(this.msjBienvenida, 'Bienvenido de Nuevo');
+    // this.msjBienvenida = this._autenticacionService.MsjBienvenida();
+    // this._helper.notificationToast(this.msjBienvenida, 'Bienvenido de Nuevo');
   }
 
   public download(archivoid: string) {

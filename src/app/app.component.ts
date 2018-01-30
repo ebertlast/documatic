@@ -22,7 +22,7 @@ export class AppComponent {
     }
   }
 
-  public setUsuario(user: Usuario){
+  public setUsuario(user: Usuario) {
     this.currentUser = user;
     if (this.currentUser.usuario === '') {
       $('body').addClass('fixed-sidebar mini-navbar');

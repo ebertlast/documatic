@@ -76,22 +76,22 @@ export class HomeComponent implements OnInit {
   }
   consultarArchivos() {
 
-    let archivos: Archivo[] = this.archivos
+    let archivos: Archivo[] = this.archivos;
     // console.log('Convencion: '+this.convencion);
 
     if (this.convencion.length > 0) {
       switch (this.convencion) {
         case 'M':
-          this.textoConvencion = 'manuale(s)'
+          this.textoConvencion = 'manuale(s)';
           break;
         case 'P':
-          this.textoConvencion = 'procedimiento(s)'
+          this.textoConvencion = 'procedimiento(s)';
           break;
         case 'I':
-          this.textoConvencion = 'instructivo(s)'
+          this.textoConvencion = 'instructivo(s)';
           break;
         case 'F':
-          this.textoConvencion = 'formato(s)'
+          this.textoConvencion = 'formato(s)';
           break;
         default:
           this.textoConvencion = 'documentos';

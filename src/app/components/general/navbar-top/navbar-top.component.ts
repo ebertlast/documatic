@@ -6,13 +6,13 @@ import { app } from '../../../../environments/environment';
   styleUrls: ['./navbar-top.component.css']
 })
 export class NavbarTopComponent implements OnInit {
-  
-  app=app;
+
+  app = app;
   constructor() { }
 
   ngOnInit() {
   }
 
-  
+
 
 }
