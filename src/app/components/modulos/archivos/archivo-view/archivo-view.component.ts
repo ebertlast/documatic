@@ -185,6 +185,8 @@ export class ArchivoViewComponent implements OnInit {
           // if (this.archivo.usuario === this.me) {
           if (this.usuarioActual.perfilid === this.usuarioArchivo.perfilid) {
             this.enableDelete = true;
+          } else {
+            this.enableDelete = true; //OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
           }
 
 

@@ -15,6 +15,7 @@ export const app = {
   currentuser: 'user',
   // ,apiurl: 'http://localhost:8082/Angular/unidosis/apidosimatic/',
   // apiurl: 'http://dosisunitarias.com/gestion_documental/apidosimatic/',
-  apiurl: 'http://dosisunitarias.com/documatic/documatic.api/',
+  // apiurl: 'http://dosisunitarias.com/documatic/documatic.api/',
+  apiurl: 'http://depharcol.com/documatic/documatic.api/',
   chatComponent: false
 };
